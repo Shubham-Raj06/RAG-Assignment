@@ -229,9 +229,9 @@ These come from `logs/queries.jsonl`, not an estimate — real token counts from
 At 50,000 queries/month, using the same per-query averages:
 $0.25 × (1211.5 / 1M) × 50,000 + $1.50 × (132 / 1M) × 50,000 = $15.14 + $9.90 ≈ **$25/month (~₹2,178/month)**.
 
-**The 1.4× claim for gemini-2.5-flash, worked out.** Using the same query mix (1211.5 input / 132 output tokens) and gemini-2.5-flash pricing ($0.35/1M input, $2.10/1M output):
-$0.35 × (1211.5 / 1M) + $2.10 × (132 / 1M) = $0.000424 + $0.000277 = **$0.000701/query**.
+**The 1.4× claim for gemini-2.5-flash, worked out.** Using the same query mix (1211.5 input / 132 output tokens) and gemini-2.5-flash pricing ($0.30/1M input, $2.50/1M output):
+$0.30 × (1211.5 / 1M) + $2.50 × (132 / 1M) = $0.000363 + $0.000330 = **$0.000693/query**.
 Versus flash-lite: $0.25 × (1211.5 / 1M) + $1.50 × (132 / 1M) = $0.000303 + $0.000198 = **$0.000501/query**.
-Ratio: $0.000701 / $0.000501 = **1.40×** — confirmed.
+Ratio: $0.000693 / $0.000501 = **1.38×** (roughly 1.4×) — confirmed.
 
 At that volume, latency is the real bottleneck, not the bill — the fix that matters first is the exact-question cache from Scaling, which removes repeated queries from the cost line entirely rather than trying to shave the per-query rate further.
