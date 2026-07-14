@@ -135,7 +135,7 @@ Logged: Contact [EMAIL_MASKED] or [PHONE_MASKED]. Family income [INCOME_MASKED].
 I'd rather list these than have someone else find them first.
 
 - **Existential questions only see the retrieved context.** "Does any college offer X?" is only as reliable as top-k retrieval — if the fact lives in a college that wasn't pulled into context, the system will answer no based on what it *was* shown, not what's true across all 15 rows. Fine at this scale; worth knowing about before it isn't.
-- **Non-English input bypasses the regex filters.** The model translates and reasons over Hindi input reasonably well on its own, but the budget/cutoff/course/placement regexes are English-only, so those queries run on semantic search alone, without the hard-constraint guardrails.
+- **Hindi and regional-language queries bypass the hard-constraint filters.** Make My Education's primary users are students from Tier 2/3 Indian cities, many of whom will query in Hindi or Hinglish. The model translates and reasons over Hindi input reasonably well, but the budget/cutoff/course/placement regexes are English-only — a Hindi query like "एक लाख बजट" runs on TF-IDF alone, without the programmatic pre-filter that catches a wrong-fee answer before any API call. The fix is to translate the query to English first (a one-line call to the same Gemini model) before running the parser chain. This is the most impactful missing feature for the actual user base.
 - **No conversation memory.** Every call to `answer.py` is stateless, which matches the required CLI interface but rules out a multi-turn "and what about hostels there?" follow-up.
 - **`usage_metadata` field names have moved between `google-genai` releases before.** The code guards with `getattr(..., 0)`, but if token counts start reading as zero after a version bump, that's the first place to check — `print(vars(resp.usage_metadata))` will show what actually came back.
 
@@ -207,5 +207,10 @@ These come from `logs/queries.jsonl`, not an estimate — real token counts from
 
 At 50,000 queries/month, using the same per-query averages:
 $0.25 × (1211.5 / 1M) × 50,000 + $1.50 × (132 / 1M) × 50,000 = $15.14 + $9.90 ≈ **$25/month (~₹2,178/month)**.
+
+**The 1.4× claim for gemini-2.5-flash, worked out.** Using the same query mix (1211.5 input / 132 output tokens) and gemini-2.5-flash pricing ($0.35/1M input, $2.10/1M output):
+$0.35 × (1211.5 / 1M) + $2.10 × (132 / 1M) = $0.000424 + $0.000277 = **$0.000701/query**.
+Versus flash-lite: $0.25 × (1211.5 / 1M) + $1.50 × (132 / 1M) = $0.000303 + $0.000198 = **$0.000501/query**.
+Ratio: $0.000701 / $0.000501 = **1.40×** — confirmed.
 
 At that volume, latency is the real bottleneck, not the bill — the fix that matters first is the exact-question cache from Scaling, which removes repeated queries from the cost line entirely rather than trying to shave the per-query rate further.

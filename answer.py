@@ -8,6 +8,7 @@ goes to logs/queries.jsonl so stdout stays machine-parseable for grading.
 """
 import json
 import os
+import re as _re
 import sys
 from pathlib import Path
 
@@ -62,8 +63,6 @@ def answer_question(question: str, retriever: Retriever, llm: LLMClient, top_k: 
     )
     return parsed, qc
 
-
-import re as _re
 
 def scrub_pii(text: str) -> str:
     """Scrubs sensitive personal identifiers (emails, phone numbers, family income metrics)

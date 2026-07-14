@@ -6,7 +6,7 @@ Verbatim output of `answer.py` for the 7 published questions.
 
 ```json
 {
-  "answer": "With an aggregate of 78% and a budget of ₹1.5 lakh/year, you are eligible for the following degree-granting engineering colleges: 1) Himalayan College of Engineering (C003), which has a fee of ₹132,000 per year and a cutoff of 75%; and 2) Terai Technical University (C009), which has a fee of ₹118,000 per year and a cutoff of 70%. Please note that Shivalik Government Polytechnic (C005) is excluded because it offers only diplomas, not B.Tech degrees. Regarding your budget, both C003 and C009 fall within your ₹1.5 lakh/year limit. Note that for C009, hostel and mess charges are additional to the tuition fees, while C003 offers a 15% fee concession for female students and a merit waiver for top rankers. There is no single 'best' college; C003 has long-standing ties to civil and electrical industries in Haridwar, while C009 provides a wider range of programmes, including M.Tech and MCA, and is supported by proximity to the Pantnagar and Sitarganj industrial estates. Your choice should depend on whether you prioritize specific branch industry connections or a larger university environment.",
+  "answer": "With an aggregate of 78%, you are eligible for both Himalayan College of Engineering (C003) and Terai Technical University (C009), as both have cutoff percentages below your score (75% and 70% respectively). Shivalik Government Polytechnic (C005) is also within your eligibility, but it offers only 3-year diploma programmes, not B.Tech degrees. Regarding your budget of ₹1.5 lakh per year, both degree-granting colleges are affordable: Himalayan College of Engineering costs ₹132,000 per year, and Terai Technical University costs ₹118,000 per year (which is ₹59,000 per semester). Note that Terai Technical University charges for hostel and mess separately, which should be factored into your total costs. Himalayan College of Engineering offers a 15% fee concession for female students. There is no single 'best' college; Himalayan has a long-standing reputation in civil and electrical sectors in the Roorkee/Haridwar belt, while Terai Technical University offers a larger intake, higher average placement (6.0 LPA vs 5.8 LPA), and additional postgraduate programmes.",
   "citations": [
     "C003",
     "C009",
@@ -21,7 +21,7 @@ Verbatim output of `answer.py` for the 7 published questions.
 
 ```json
 {
-  "answer": "Two colleges from the provided records offer an MBA program: 1) Ganga Valley University (C002) at Haridwar, which costs Rs 98,000 per year (roughly Rs 49,000 per semester). 2) Doon Business School (C004) at Dehradun, which costs Rs 175,000 per year (roughly Rs 87,500 per semester). Note that Doon Business School requires compulsory hostel residence in the first year, which will incur additional charges beyond the tuition fees listed.",
+  "answer": "Two colleges from the provided records offer an MBA program: Ganga Valley University (C002) and Doon Business School (C004). Ganga Valley University has annual fees of Rs 98,000 per year (which is Rs 49,000 per semester). Doon Business School has annual fees of Rs 175,000 per year (which is Rs 87,500 per semester), noting that hostel residence is compulsory for students in their first year, which will incur additional charges.",
   "citations": [
     "C002",
     "C004"
@@ -35,7 +35,7 @@ Verbatim output of `answer.py` for the 7 published questions.
 
 ```json
 {
-  "answer": "The government colleges in the provided records that offer hostel facilities are: 1. Kumaon Arts and Science College (C007), where hostel places are limited and prioritized for students from remote hill blocks. 2. Ambedkar National Institute (C012), where hostel residence is compulsory for all undergraduates.",
+  "answer": "The government colleges in the provided records that have hostel facilities are the Kumaon Arts and Science College (C007) and the Ambedkar National Institute (C012).",
   "citations": [
     "C007",
     "C012"
@@ -62,7 +62,7 @@ Verbatim output of `answer.py` for the 7 published questions.
 
 ```json
 {
-  "answer": "Ganga Valley University does not offer a PhD in Physics. According to our records, the university offers BBA, B.Com, BCA, and MBA programs.",
+  "answer": "Ganga Valley University does not offer a PhD in Physics. According to the records, the university offers BBA, B.Com, BCA, and MBA courses.",
   "citations": [
     "C002"
   ],
@@ -75,7 +75,7 @@ Verbatim output of `answer.py` for the 7 published questions.
 
 ```json
 {
-  "answer": "Several colleges in the provided context offer scholarships or fee concessions for students from low-income families: 1) Kumaon Arts and Science College (C007) provides means-cum-merit scholarships from the state government for students below an income threshold. 2) Ganga Valley University (C002) offers a need-based fee concession for students with an annual family income below four lakh rupees. 3) Shivalik Government Polytechnic (C005) provides a tuition waiver for students with a family income below two and a half lakh rupees per year.",
+  "answer": "Several colleges in the provided context offer scholarships or fee concessions for students from low-income families: 1) Kumaon Arts and Science College (C007) provides means-cum-merit scholarships from the state government for students below the income threshold. 2) Ganga Valley University (C002) offers a need-based fee concession for students with an annual family income below four lakh rupees. 3) Shivalik Government Polytechnic (C005) provides a complete tuition waiver for students with a family income below two and a half lakh rupees per year.",
   "citations": [
     "C007",
     "C002",
@@ -90,13 +90,11 @@ Verbatim output of `answer.py` for the 7 published questions.
 
 ```json
 {
-  "answer": "Selecting the 'best' college depends on your academic field of interest and your priorities, as no single institution is objectively the best for everyone. Given your budget of ₹1 lakh per semester (₹2 lakh per year), several options are financially viable, though you must consider additional costs:",
+  "answer": "Selecting the 'best' college depends on your specific field of study and whether you weigh academic prestige, location, or amenities more heavily. With a budget of ₹1 lakh per semester (₹2 lakh per year), all degree colleges listed are within your financial reach, though you must consider additional costs mentioned for each. \n\n1. Ambedkar National Institute (C012): The most prestigious government technical option with the highest average placement (8.4 LPA). The tuition is ₹45,000 per year (₹22,500 per semester), well within your budget, though it has the strictest eligibility with an 88% cutoff.\n2. North Ridge Institute of Technology (C001): A private engineering option with a strong placement record (6.5 LPA). Tuition is ₹1,45,000 per year (₹72,500 per semester). Note that hostel and mess charges are billed over and above this tuition fee.\n3. Himalayan College of Engineering (C003): A private option at ₹1,32,000 per year (₹66,000 per semester). It offers on-campus housing, which is an important factor to consider against your total budget.\n\nPlease note: You must have an aggregate percentage equal to or higher than the cutoff for each institution to be eligible (88% for C012, 82% for C001, and 75% for C003).",
   "citations": [
-    "C001",
-    "C003",
-    "C011",
     "C012",
-    "C007"
+    "C001",
+    "C003"
   ],
   "answered": true,
   "reason_if_unanswered": null
