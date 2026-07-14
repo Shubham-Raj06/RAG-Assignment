@@ -25,5 +25,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy the rest of the application
 COPY . .
 
+# Health check: verify data layer and imports load without needing an API key
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python -c "from src.data_loader import load_colleges; df = load_colleges(); assert len(df) > 0" || exit 1
+
 # Set default entry point to execute answer.py
 ENTRYPOINT ["python", "answer.py"]

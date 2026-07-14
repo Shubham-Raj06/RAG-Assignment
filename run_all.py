@@ -18,8 +18,9 @@ if hasattr(sys.stderr, "reconfigure"):
 from src.data_loader import load_colleges
 from src.retriever import Retriever
 from src.llm import LLMClient
-from answer import answer_question, log_query, LOG_PATH
+from src.logger import log_query
 from src.cost_tracker import load_and_print_summary
+from answer import answer_question, LOG_PATH
 
 QUESTIONS = [
     "I scored 78% and have a budget of \u20b91.5 lakh/year \u2014 which engineering colleges can I consider?",
@@ -51,7 +52,7 @@ def main():
     lines = ["# answers.md\n", "Verbatim output of `answer.py` for the 7 published questions.\n"]
     for q in QUESTIONS:
         parsed, qc = answer_question(q, retriever, llm)
-        log_query(q, parsed, qc)
+        log_query(LOG_PATH, q, parsed, qc)
         output = {
             "answer": parsed.get("answer", ""),
             "citations": parsed.get("citations", []),

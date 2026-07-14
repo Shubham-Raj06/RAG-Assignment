@@ -1,0 +1,46 @@
+name: Tests
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  unit-tests:
+    name: Unit Tests (no API key needed)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: pytest tests/test_parsers.py -v --tb=short
+
+      - name: Verify CLI contract (no API key)
+        run: |
+          output=$(python answer.py 2>&1 || true)
+          echo "$output" | python -c "
+          import sys, json
+          data = json.loads(sys.stdin.read().strip())
+          assert 'answered' in data
+          assert 'citations' in data
+          print('CLI contract check passed')
+          "

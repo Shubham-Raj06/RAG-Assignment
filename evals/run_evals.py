@@ -20,8 +20,9 @@ if hasattr(sys.stderr, "reconfigure"):
 from src.data_loader import load_colleges
 from src.retriever import Retriever
 from src.llm import LLMClient
-from answer import answer_question, log_query, LOG_PATH
+from src.logger import log_query
 from src.cost_tracker import load_and_print_summary
+from answer import answer_question, LOG_PATH
 
 
 def check_case(case: dict, parsed: dict) -> tuple[bool, list[str]]:
@@ -73,7 +74,7 @@ def main():
     passed = 0
     for case in cases:
         parsed, qc = answer_question(case["question"], retriever, llm)
-        log_query(case["question"], parsed, qc)
+        log_query(LOG_PATH, case["question"], parsed, qc)
         ok, failures = check_case(case, parsed)
         status = "PASS" if ok else "FAIL"
         print(f"[{status}] {case['id']}: {case['question']}")

@@ -2,6 +2,27 @@
 
 Answers natural-language questions about the 15-college sample dataset, grounded in the data and cited by `college_id`, through a single CLI entry point: `answer.py`.
 
+## ⚡ Quick Start (60 Seconds)
+
+1. **Install requirements:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. **Set your API key and run a query:**
+   ```bash
+   # Windows (PowerShell):
+   $env:GEMINI_API_KEY="your-key-here"
+   python answer.py "Which colleges offer an MBA, and what do they cost?"
+
+   # Windows (CMD):
+   set GEMINI_API_KEY=your-key-here
+   python answer.py "Which colleges offer an MBA, and what do they cost?"
+
+   # Linux/macOS:
+   export GEMINI_API_KEY="your-key-here"
+   python answer.py "Which colleges offer an MBA, and what do they cost?"
+   ```
+
 ## Running it
 
 ```bash
