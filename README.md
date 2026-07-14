@@ -2,7 +2,7 @@
 
 Answers natural-language questions about the 15-college sample dataset, grounded in the data and cited by `college_id`, through a single CLI entry point: `answer.py`.
 
-## ⚡ Quick Start (60 Seconds)
+##  Quick Start (60 Seconds)
 
 1. **Install requirements:**
    ```bash
@@ -143,13 +143,13 @@ Cost per 1,000 queries: INR 43.58
 ```
 (17, not 18 — one eval case, the below-cutoff true negative, short-circuits before any LLM call and never gets logged with a cost entry.)
 
-**PII scrubbing.** Emails, phone numbers, and family-income figures get masked before anything is written to `logs/queries.jsonl`:
+**PII scrubbing.** Emails, phone numbers, Aadhaar numbers, and family-income figures get masked before anything is written to `logs/queries.jsonl`:
 ```
-Input:  Contact testing@mme.com or 1234567890. Family income is Rs 400000.
-Logged: Contact [EMAIL_MASKED] or [PHONE_MASKED]. Family income [INCOME_MASKED].
+Input:  Contact testing@mme.com or 9876543210. Aadhaar: 1234 5678 9012. Family income is Rs 400000.
+Logged: Contact [EMAIL_MASKED] or [PHONE_MASKED]. Aadhaar: [AADHAAR_MASKED]. Family income [INCOME_MASKED].
 ```
 
-**What this doesn't cover.** This confirms the deterministic layer — parsing, filtering, schema validation, PII masking — and 11 specific question patterns end to end. It doesn't confirm every phrasing of those same questions gets handled the same way, and I haven't specifically tested what happens to the CLI's output contract when the Gemini call itself fails partway through (rate limit, bad key, timeout) rather than returning malformed JSON. That's a real gap, not one I'm papering over.
+**What this doesn't cover.** This confirms the deterministic layer — parsing, filtering, schema validation, PII masking — and 11 specific question patterns end to end. It doesn't confirm every phrasing of those same questions gets handled the same way. The CLI output contract under transient API failures (rate limit, timeout, 5xx) is now tested: `answer.py` wraps the LLM call in a try-except and returns `{"answered": false, "reason_if_unanswered": "API error (...)"}` rather than leaking a traceback. Remaining gap: phrasing variation and multilingual inputs are not specifically covered.
 
 ## Known limitations
 
