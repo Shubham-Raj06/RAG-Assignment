@@ -1,0 +1,32 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# Query logs — may contain personal student queries; never commit
+logs/
+
+# Editor artefacts
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS artefacts
+.DS_Store
+Thumbs.db
+
+# Build artefacts
+*.egg-info/
+dist/
+build/
+
+# Pytest cache
+.pytest_cache/

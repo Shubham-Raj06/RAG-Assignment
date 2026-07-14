@@ -1,0 +1,95 @@
+[
+  {
+    "id": "unit_conversion_semester",
+    "question": "What are the fees at Doon Business School per semester?",
+    "expected_answered": true,
+    "expected_citations": ["C004"],
+    "required_substrings": ["87,500", "semester", "year"],
+    "note": "annual_fees_inr=175000/year -> ~87,500/semester. Must show the conversion, not just state the annual figure."
+  },
+  {
+    "id": "cutoff_hard_floor_true_negative",
+    "question": "I scored 40% in Class 12, which engineering colleges can I get into?",
+    "expected_answered": false,
+    "expected_citations": [],
+    "required_substrings": [],
+    "note": "Lowest engineering-ish cutoff in dataset is 60 (Shivalik diploma). 40% should match nothing -- true negative, not a hallucinated relaxed answer."
+  },
+  {
+    "id": "placement_zero_not_worst",
+    "question": "What is the average placement package at Nainital Institute of Medical Sciences?",
+    "expected_answered": true,
+    "expected_citations": ["C006"],
+    "required_substrings": ["report", "internship"],
+    "forbidden_substrings": ["worst", "lowest placement"],
+    "note": "avg_placement_lpa=0 must be explained (MBBS/BDS go to internship/PG), not reported as literal worst package."
+  },
+  {
+    "id": "diploma_not_degree",
+    "question": "Does Shivalik Government Polytechnic offer a B.Tech degree?",
+    "expected_answered": true,
+    "expected_citations": ["C005"],
+    "required_substrings": ["diploma"],
+    "forbidden_substrings": ["yes, it offers b.tech", "b.tech degree available"],
+    "note": "College only offers Diplomas, not a B.Tech. Must say so, not imply a degree."
+  },
+  {
+    "id": "similar_name_disambiguation",
+    "question": "Does Ganga Institute of Commerce offer an MBA?",
+    "expected_answered": true,
+    "expected_citations": ["C014"],
+    "required_substrings": [],
+    "forbidden_substrings": ["c002", "ganga valley university"],
+    "note": "MBA belongs to Ganga Valley University (C002), a different, unrelated college. Must not conflate C014 with C002."
+  },
+  {
+    "id": "unknown_course_refusal",
+    "question": "Does Terai Technical University offer a B.Des programme?",
+    "expected_answered": true,
+    "expected_citations": ["C009"],
+    "required_substrings": ["does not offer"],
+    "note": "Terai Technical offers B.Tech/ME/MCA/M.Tech, no B.Des. Must answer No based on context, rather than refuse."
+  },
+  {
+    "id": "unknown_college_refusal",
+    "question": "What are the annual fees at Garhwal Central University?",
+    "expected_answered": false,
+    "expected_citations": [],
+    "required_substrings": [],
+    "note": "This college does not exist in the 15-row dataset. Must say so."
+  },
+  {
+    "id": "scholarship_freetext",
+    "question": "Which colleges offer scholarships or fee concessions for low-income families?",
+    "expected_answered": true,
+    "expected_citations_any_of": ["C002", "C005", "C007", "C012"],
+    "required_substrings": [],
+    "note": "Only answerable from the free-text `about` field. At least one of these income-based-concession colleges should be cited."
+  },
+  {
+    "id": "government_hostel_filter",
+    "question": "List the government colleges that have hostel facilities.",
+    "expected_answered": true,
+    "expected_citations": ["C007", "C012"],
+    "required_substrings": [],
+    "forbidden_substrings": ["c005", "c011"],
+    "note": "Government colleges are C005, C007, C011, C012. Only C007 and C012 have hostel_available=Yes."
+  },
+  {
+    "id": "extra_costs_beyond_tuition",
+    "question": "What is the total yearly cost to study at Rishikesh Institute of Design, including everything?",
+    "expected_answered": true,
+    "expected_citations": ["C008"],
+    "required_substrings": ["studio"],
+    "note": "annual_fees_inr alone understates cost; about field lists studio/material/printing charges of 30-40k/year on top. Must surface this, not just quote tuition."
+  },
+  {
+    "id": "best_college_judgment_call",
+    "question": "Which engineering college is best for me? I scored 80% and have a budget of Rs 1.5 lakh/year.",
+    "expected_answered": true,
+    "expected_citations_any_of": ["C003", "C009"],
+    "required_substrings": ["depend", "Himalayan", "Terai"],
+    "forbidden_substrings": ["best college is C003", "best college is C009", "c001", "c012"],
+    "note": "A query asking for the 'best' college should present options and trade-offs, and state that 'best' depends on the student's preferences, rather than picking a single winner."
+  }
+]

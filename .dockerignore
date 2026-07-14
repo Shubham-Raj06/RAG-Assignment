@@ -1,0 +1,32 @@
+# Exclude files that shouldn't be in the Docker image
+
+# Query logs — may contain personal student queries
+logs/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# Git history
+.git/
+.gitignore
+
+# Development artefacts
+.vscode/
+.idea/
+*.swp
+.pytest_cache/
+
+# Scratch / CI
+tests/
+*.md
+walkthrough.md
+verification.md
+task.md
